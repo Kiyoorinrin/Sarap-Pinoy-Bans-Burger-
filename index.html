@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BANS BURGER</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #d62828;
+      --mustard: #fcbf49;
+      --white: #ffffff;
+      --brown: #6c3e1c;
+      --bg: #fffaf0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    html, body {
+      font-family: 'Fredoka', sans-serif;
+      background: var(--bg);
+      color: var(--brown);
+      overflow-x: hidden;
+    }
+
+    section {
+      padding: 60px 30px;
+      text-align: center;
+    }
+
+    header {
+      min-height: 100vh;
+      background: radial-gradient(circle, var(--mustard) 0%, var(--red) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 30px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    header img {
+      width: 140px;
+      border-radius: 50%;
+      animation: bounce 2s infinite;
+    }
+
+    h1 {
+      font-size: 50px;
+      margin-top: 20px;
+      color: var(--white);
+      text-shadow: 2px 2px var(--brown);
+    }
+
+    .tagline {
+      font-size: 20px;
+      margin-top: 10px;
+      color: var(--white);
+      animation: glow 2s infinite;
+    }
+
+    .description {
+      font-size: 18px;
+      margin-top: 15px;
+      max-width: 600px;
+      color: #fff8dc;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      background: var(--mustard);
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    nav a {
+      background-color: var(--white);
+      color: var(--red);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 12px 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 0 #c99a2c;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      transform: scale(1.08);
+      background: var(--red);
+      color: var(--white);
+    }
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: var(--red);
+    }
+
+    .menu-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 25px;
+      padding: 20px;
+    }
+
+    .menu-item {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      padding: 20px;
+      transition: transform 0.3s;
+    }
+
+    .menu-item:hover {
+      transform: scale(1.03);
+    }
+
+    .menu-item img {
+      width: 100%;
+      height: 160px;
+      border-radius: 15px;
+      object-fit: cover;
+    }
+
+    .add-cart-btn {
+      margin-top: 10px;
+      padding: 10px 15px;
+      background-color: var(--red);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .add-cart-btn:hover {
+      background-color: #a4161a;
+      transform: scale(1.05);
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      background: #fff8dc;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    form input, form button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    form button {
+      background-color: var(--mustard);
+      color: var(--brown);
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #cart {
+      background: #fff;
+      border-radius: 15px;
+      max-width: 400px;
+      margin: 20px auto;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    #cart ul {
+      text-align: left;
+      margin-bottom: 15px;
+    }
+
+    footer {
+      background: var(--red);
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .greeting {
+      text-align: center;
+      font-size: 26px;
+      font-weight: bold;
+      color: #d94f00;
+      margin: 30px auto;
+      animation: popIn 1s ease-in-out, bounceGlow 2s infinite;
+      text-shadow: 0 0 10px var(--mustard);
+    }
+
+    /* Animations */
+    @keyframes glow {
+      0%, 100% { text-shadow: 0 0 10px var(--mustard); }
+      50% { text-shadow: 0 0 20px var(--white); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1.05); opacity: 1; }
+    }
+
+    @keyframes bounceGlow {
+      0%, 100% { transform: scale(1); text-shadow: 0 0 8px var(--mustard); }
+      50% { transform: scale(1.08); text-shadow: 0 0 20px var(--white); }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <img src="AA.jpeg" alt="Bans Burger Logo" />
+  <h1>BANS BURGER</h1>
+  <p class="tagline">Unang Kagat, Saba Agad!</p>
+  <p class="description">Savor the unexpected. Our banana skin patties are healthy, sustainable, and packed with flavor!</p>
+</header>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#menu">Menu</a>
+  <a href="#cart">Cart</a>
+  <a href="#login">Login</a>
+  <a href="#register">Register</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<!-- 👋 DYNAMIC GREETING -->
+<div id="greeting" class="hidden greeting"></div>
+
+<!-- HOME SECTION -->
+<section id="home">
+  <h2>Why Choose Bans Burger?</h2>
+  <p>Because you deserve a burger that's tasty, healthy, and planet-friendly.</p>
+  <p>Made with banana and plantain skins, our patties prove that delicious can also be nutritious.</p>
+  <p>Join the burger revolution — one bite at a time!</p>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about">
+  <h2>About Us</h2>
+  <p><strong>Mission:</strong> To create a thriving community around delicious, burger plantain skin patties. We believe in the power of healthy eating to enhance well-being, and we're committed to making nutritious and satisfying food accessible to everyone.</p>
+  <br />
+  <p><strong>Vision:</strong> To create a sustainable and healthy plant-based burger made with banana skin and plantain, while promoting environmental responsibility and reducing food waste.</p>
+  <br />
+  <p><strong>Our Story:</strong> What began as a school idea quickly turned into a flavorful movement. We saw waste in banana peels and turned it into wonder. We hope to show the world that healthy and eco-friendly food can still taste amazing!</p>
+</section>
+
+<!-- MENU SECTION -->
+<section id="menu">
+  <h2>Our Menu</h2>
+  <div class="menu-container" id="menu-container"></div>
+</section>
+
+<!-- CART SECTION -->
+<section id="cart" class="hidden">
+  <h2>🛒 Your Cart</h2>
+  <div id="cart">
+    <ul id="cart-items"></ul>
+    <p><strong>Total: Php <span id="cart-total">0</span></strong></p>
+    <button class="add-cart-btn" onclick="checkout()">Checkout</button>
+  </div>
+</section>
+
+<!-- LOGIN SECTION -->
+<section id="login">
+  <h2>Login</h2>
+  <form onsubmit="loginUser(event)">
+    <input type="email" id="login-email" placeholder="Email" required />
+    <input type="password" id="login-password" placeholder="Password" required />
+    <button type="submit">Login</button>
+  </form>
+</section>
+
+<!-- REGISTER SECTION -->
+<section id="register">
+  <h2>Register</h2>
+  <form onsubmit="registerUser(event)">
+    <input type="text" id="reg-name" placeholder="Full Name" required />
+    <input type="email" id="reg-email" placeholder="Email" required />
+    <input type="password" id="reg-password" placeholder="Password" required />
+    <button type="submit">Register</button>
+  </form>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact">
+  <h2>Contact Us</h2>
+  <p>Email: bans.burger1@gmail.com</p>
+  <p>Phone: +63 962 243 4022</p> 
+</section>
+
+<footer>
+  <p>&copy; 2025 Bans Burger. All rights reserved.</p>
+</footer>
+
+<script>
+const dingSound = new Audio("POP.mp3");
+const users = {};
+let isLoggedIn = false;
+let currentUserName = "";
+
+// MENU ITEMS
+const menuItems = [
+  { name: 'Classic Burger', description: 'Juicy patty with ketchup and mayo on a soft bun.', price: 35, img: '1A.jpeg' },
+  { name: 'Cheese Burger', description: 'Cheesy, savory, and plantain-powered goodness.', price: 50, img: '2A.jpeg' },
+  { name: 'Veggie Burger', description: 'Plant-powered patty with fresh greens.', price: 60, img: '3A.jpeg' },
+  { name: 'Double Patty Burger', description: 'Two thick patties stacked high!', price: 55, img: '6A.JPEG' },
+  { name: 'Buy 1 Take 1 Double Patty', description: '2 delicious burgers in 1 amazing deal!', price: 99, img: '5A.JPEG' },
+];
+
+// DISPLAY MENU
+function populateMenu() {
+  const container = document.getElementById('menu-container');
+  container.innerHTML = '';
+  menuItems.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'menu-item';
+    div.innerHTML = `
+      <img src="${item.img}" alt="${item.name}" />
+      <h3>${item.name}</h3>
+      <p>${item.description}</p>
+      <p><strong>Price:</strong> Php ${item.price}</p>
+      ${isLoggedIn ? `<button class="add-cart-btn" onclick="addToCart('${item.name}', ${item.price})">Add to Cart</button>` : `<button class="add-cart-btn" disabled>Login to order</button>`}
+    `;
+    container.appendChild(div);
+  });
+}
+
+// REGISTER FUNCTION
+function registerUser(event) {
+  event.preventDefault();
+  const name = document.getElementById("reg-name").value;
+  const email = document.getElementById("reg-email").value;
+  const password = document.getElementById("reg-password").value;
+
+  if (users[email]) {
+    alert("Email already registered.");
+    return;
+  }
+
+  users[email] = { name, password };
+  alert("Registered successfully! Please login.");
+  document.getElementById("register").classList.add("hidden");
+  document.getElementById("login").scrollIntoView({ behavior: "smooth" });
+}
+
+// LOGIN FUNCTION
+function loginUser(event) {
+  event.preventDefault();
+  const email = document.getElementById("login-email").value;
+  const password = document.getElementById("login-password").value;
+  const user = users[email];
+
+  if (!user || user.password !== password) {
+    alert("Incorrect email or password.");
+    return;
+  }
+
+  isLoggedIn = true;
+  currentUserName = user.name;
+
+  // Show greeting
+  const greetBox = document.getElementById("greeting");
+  greetBox.textContent = `Hello, ${currentUserName}! Ready to order? 🍔`;
+  greetBox.classList.remove("hidden");
+  greetBox.scrollIntoView({ behavior: "smooth" });
+
+  document.getElementById("cart").classList.remove("hidden");
+  document.getElementById("login").classList.add("hidden");
+  document.getElementById("register").classList.add("hidden");
+
+  populateMenu();
+}
+
+// ADD TO CART
+const cart = [];
+
+function addToCart(item, price) {
+  cart.push({ item, price });
+  dingSound.play();
+  updateCart();
+}
+
+function updateCart() {
+  const list = document.getElementById("cart-items");
+  const total = document.getElementById("cart-total");
+  list.innerHTML = '';
+  let sum = 0;
+
+  cart.forEach(entry => {
+    const li = document.createElement("li");
+    li.textContent = `${entry.item} - Php ${entry.price}`;
+    list.appendChild(li);
+    sum += entry.price;
+  });
+
+  total.textContent = sum;
+}
+
+function checkout() {
+  if (cart.length === 0) {
+    alert("Your cart is empty!");
+    return;
+  }
+
+  alert("Thank you for your order! 🛵🍔");
+  cart.length = 0;
+  updateCart();
+}
+
+// INITIAL LOAD
+window.onload = () => {
+  populateMenu();
+  setTimeout(() => {
+    alert("🔥 PROMO: Buy 1 Take 1 — This Week Only!");
+  }, 1000);
+};
+</script>
+</body>
+</html>
